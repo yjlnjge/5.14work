@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swjd.dao.IUserMapper">
+    <select id="selectById" parameterType="com.swjd.pojo.User"  resultType="com.swjd.pojo.User">
+    select * from user where 1=1
+    <if test="#{stuName!=null and stuName!=''}">
+        and  stuName like '%${stuName}%'
+    </if>
+    </select>
+
+    <select id="getOne" parameterType="com.swjd.pojo.User"  resultType="com.swjd.pojo.User">
+        select * from user where id=#{id}
+    </select>
+
+    <update id="deleteById" parameterType="java.lang.Integer">
+        delete from user where id = #{id}
+    </update>
+
+    <insert id="add" parameterType="com.swjd.pojo.User">
+        insert user(stuName,stuAge) values (#{stuName},#{stuAge})
+    </insert>
+
+    <update id="update" parameterType="com.swjd.pojo.User">
+        update user set stuName = #{stuName},stuAge = #{stuAge}  where id = #{id};
+    </update>
+</mapper>
+    
